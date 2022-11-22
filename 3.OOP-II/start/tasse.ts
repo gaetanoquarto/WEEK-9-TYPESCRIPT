@@ -9,16 +9,6 @@ abstract class Lavoratore {
         this. tasseinps = _tasseinps;
         this.tasseirpef = _tasseirpef;
     }
-    abstract getUtileTasse(): number;
-    abstract getTasseInps(): number;
-    abstract getTasseIrpef(): number;
-    abstract getRedditoAnnuoNetto(): number;
-}
-
-class Professionista extends Lavoratore {
-    constructor(_redditoannuolordo: number, _codredd: number = 78, _tasseinps: number = 25.72, _tasseirpef: number = 5) {
-    super(_redditoannuolordo, _codredd, _tasseinps, _tasseirpef) 
-}
     getUtileTasse(): number {
         return this.redditoannuolordo * this.codredd / 100;
     }
@@ -33,6 +23,13 @@ class Professionista extends Lavoratore {
     }
 }
 
+class Professionista extends Lavoratore {
+    constructor(_redditoannuolordo: number, _codredd: number = 78, _tasseinps: number = 25.72, _tasseirpef: number = 5) {
+    super(_redditoannuolordo, _codredd, _tasseinps, _tasseirpef) 
+}
+   
+}
+
 let newProfessionista = new Professionista(30000);
 console.log("utile tasse professionista: ", newProfessionista.getUtileTasse());
 console.log("tasse inps professionista: ", newProfessionista.getTasseInps());
@@ -41,7 +38,7 @@ console.log("reddito annuo netto professionista: ", newProfessionista.getReddito
 console.log("---------------------------------");
 
 
-class Artigiano extends Professionista {
+class Artigiano extends Lavoratore {
     constructor(_redditoannuolordo: number, _codredd: number = 67, _tasseinps: number = 35, _tasseirpef: number = 15) {
     super(_redditoannuolordo, _codredd, _tasseinps, _tasseirpef) 
 }
@@ -55,7 +52,7 @@ console.log("tasse irpef artigiano: ",newArtigiano.getTasseIrpef());
 console.log("reddito annuo netto artigiano: ",newArtigiano.getRedditoAnnuoNetto());
 console.log("---------------------------------");
 
-class Commerciante extends Professionista {
+class Commerciante extends Lavoratore {
     constructor(_redditoannuolordo: number, _codredd: number = 40, _tasseinps: number = 35, _tasseirpef: number = 15) {
     super(_redditoannuolordo, _codredd, _tasseinps, _tasseirpef) 
 }
